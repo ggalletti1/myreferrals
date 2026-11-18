@@ -28,7 +28,6 @@ h1 span{color:var(--mute)}
 .name{margin:auto 0 0;padding-top:8px;font-size:min(clamp(12px,1.8dvh,15px),3.4vw);font-weight:600;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .perk{margin:3px 0 0;font-size:min(clamp(19px,3.6dvh,34px),5.4vw);line-height:1.08;font-weight:800;letter-spacing:-.03em;text-wrap:balance}
 .count{margin:6px 0 0;font-size:12px;font-weight:500;min-height:1.2em}
-.count[hidden]{display:block;visibility:hidden}
 .foot{flex:none;margin:clamp(8px,1.6dvh,16px) 0 0;font-size:min(11px,3.1vw);color:var(--mute);text-align:center;text-wrap:balance}
 /* theme menu (copied from MyTesla) */
 .theme-wrap{position:relative}

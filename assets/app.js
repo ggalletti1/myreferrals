@@ -29,28 +29,31 @@ const $ = id => document.getElementById(id);
   if (mq) (mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply));
   apply();
 })();
-/* click counter: public Abacus counters (no cookies, no keys). Read all on load; +1 when a card (a link) is clicked, without
-   delaying it. Every card shows 'N joined' (N > 0) or 'Be the first' (0); if any read fails, no card shows a count (they stay even). */
+/* click counter: public Abacus counters (no cookies, no keys). Every card always shows a count line, from the first fallback that works:
+   live value (4 s timeout, one retry) -> last good value cached in localStorage -> baseline baked in at build time (data-base).
+   A click on a card (a link) sends +1 in the background and never delays navigation. */
 (function counters() {
-  const b = document.body.dataset, api = b.counter && b.ns ? b.counter.replace(/\/$/, '') : ''; if (!api || !window.fetch) return;
+  const b = document.body.dataset, api = b.counter && b.ns ? b.counter.replace(/\/$/, '') : '';
+  const CACHE = 'myreferrals-counts';
   const label = v => v > 0 ? v.toLocaleString('en-US') + ' joined' : 'Be the first';
-  const call = (path, keepalive) => {
-    const ctl = window.AbortController ? new AbortController() : null;
-    if (ctl && !keepalive) setTimeout(() => ctl.abort(), 4000);
-    return fetch(api + path, {cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer', keepalive: !!keepalive, signal: ctl && !keepalive ? ctl.signal : undefined})
-      .then(r => r.ok ? r.json() : null).then(d => d && typeof d.value === 'number' ? d.value : null).catch(() => null);
+  const num = v => typeof v === 'number' && isFinite(v) && v >= 0 ? Math.floor(v) : null;
+  let cache = {}; try { cache = JSON.parse(localStorage.getItem(CACHE) || '{}') || {}; } catch (e) {}
+  const remember = (key, v) => { cache[key] = v; try { localStorage.setItem(CACHE, JSON.stringify(cache)); } catch (e) {} };
+  const once = (path, keepalive) => {
+    const ctl = !keepalive && window.AbortController ? new AbortController() : null;
+    const t = ctl ? setTimeout(() => ctl.abort(), 4000) : 0;
+    return fetch(api + path, {cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer', keepalive: !!keepalive, signal: ctl ? ctl.signal : undefined})
+      .then(r => r.ok ? r.json() : null).then(d => num(d && d.value)).catch(() => null).finally(() => clearTimeout(t));
   };
-  const cards = [...document.querySelectorAll('a.card[data-key]')];
-  let live = false;
-  Promise.all(cards.map(c => call('/get/' + b.ns + '/' + c.dataset.key))).then(vals => {
-    if (vals.some(v => v === null)) return;                       // service down or partial: show nothing anywhere
-    live = true;
-    cards.forEach((c, i) => { const el = c.querySelector('.count'); el.textContent = label(vals[i]); el.hidden = false; });
-  });
-  cards.forEach(c => {
-    const el = c.querySelector('.count');
-    const hit = () => { call('/hit/' + b.ns + '/' + c.dataset.key, true).then(v => { if (live && v !== null) el.textContent = label(v); }); };   // fire-and-forget
-    c.addEventListener('click', hit);
+  const read = path => once(path).then(v => v !== null ? v : once(path));          // one retry
+  document.querySelectorAll('a.card[data-key]').forEach(c => {
+    const el = c.querySelector('.count'), key = c.dataset.key, base = num(Number(c.dataset.base)) || 0;
+    const show = v => { el.textContent = label(v); };
+    show(Math.max(base, num(cache[key]) || 0));                                       // cached / baseline right away
+    if (!api || !window.fetch) return;
+    read('/get/' + b.ns + '/' + key).then(v => { if (v !== null) { remember(key, v); show(Math.max(v, base)); } });
+    const hit = () => { once('/hit/' + b.ns + '/' + key, true).then(v => { if (v !== null) { remember(key, v); show(Math.max(v, base)); } }); };
+    c.addEventListener('click', hit);                                                 // fire-and-forget: navigation is never delayed
     c.addEventListener('auxclick', e => { if (e.button === 1) hit(); });
   });
 })();
