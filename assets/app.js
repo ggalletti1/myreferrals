@@ -29,7 +29,7 @@ const $ = id => document.getElementById(id);
   if (mq) (mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply));
   apply();
 })();
-/* click counter: public Abacus counters (no cookies, no keys). Read on load, +1 on click without delaying the link.
+/* click counter: public Abacus counters (no cookies, no keys). Read on load, +1 when the card (a link) is clicked, without delaying it.
    Any failure or a zero count keeps the line hidden. */
 (function counters() {
   const b = document.body.dataset, api = b.counter && b.ns ? b.counter.replace(/\/$/, '') : ''; if (!api || !window.fetch) return;
@@ -40,9 +40,11 @@ const $ = id => document.getElementById(id);
     return fetch(api + path, {cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer', keepalive: !!keepalive, signal: ctl && !keepalive ? ctl.signal : undefined})
       .then(r => r.ok ? r.json() : null).then(d => d && d.value).catch(() => null);
   };
-  document.querySelectorAll('.card[data-key]').forEach(card => {
-    const el = card.querySelector('.count'), key = card.dataset.key;
-    call('/get/' + b.ns + '/' + key).then(v => show(el, v));
-    card.querySelector('.cta').addEventListener('click', () => { call('/hit/' + b.ns + '/' + key, true).then(v => show(el, v)); });
+  document.querySelectorAll('a.card[data-key]').forEach(card => {
+    const el = card.querySelector('.count'), path = b.ns + '/' + card.dataset.key;
+    call('/get/' + path).then(v => show(el, v));
+    const hit = () => { call('/hit/' + path, true).then(v => show(el, v)); };   // fire-and-forget: navigation is never delayed
+    card.addEventListener('click', hit);
+    card.addEventListener('auxclick', e => { if (e.button === 1) hit(); });
   });
 })();
