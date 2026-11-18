@@ -1,8 +1,8 @@
 {
   "id": "/referrals/",
-  "name": "Perks, on me",
-  "short_name": "Referrals",
-  "description": "Giovanni’s referral links: a free stock, a free month of Self-Driving, Grok Bot and more.",
+  "name": "MyReferrals",
+  "short_name": "MyReferrals",
+  "description": "A free stock, a free month of Self-Driving, Grok Bot and more.",
   "start_url": "/referrals/",
   "scope": "/referrals/",
   "display": "standalone",
