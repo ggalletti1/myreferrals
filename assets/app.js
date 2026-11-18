@@ -29,22 +29,28 @@ const $ = id => document.getElementById(id);
   if (mq) (mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply));
   apply();
 })();
-/* click counter: public Abacus counters (no cookies, no keys). Read on load, +1 when the card (a link) is clicked, without delaying it.
-   Any failure or a zero count keeps the line hidden. */
+/* click counter: public Abacus counters (no cookies, no keys). Read all on load; +1 when a card (a link) is clicked, without
+   delaying it. Every card shows 'N joined' (N > 0) or 'Be the first' (0); if any read fails, no card shows a count (they stay even). */
 (function counters() {
   const b = document.body.dataset, api = b.counter && b.ns ? b.counter.replace(/\/$/, '') : ''; if (!api || !window.fetch) return;
-  const show = (el, v) => { if (typeof v === 'number' && v > 0) { el.textContent = v.toLocaleString('en-US') + ' joined'; el.hidden = false; } };
+  const label = v => v > 0 ? v.toLocaleString('en-US') + ' joined' : 'Be the first';
   const call = (path, keepalive) => {
     const ctl = window.AbortController ? new AbortController() : null;
     if (ctl && !keepalive) setTimeout(() => ctl.abort(), 4000);
     return fetch(api + path, {cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer', keepalive: !!keepalive, signal: ctl && !keepalive ? ctl.signal : undefined})
-      .then(r => r.ok ? r.json() : null).then(d => d && d.value).catch(() => null);
+      .then(r => r.ok ? r.json() : null).then(d => d && typeof d.value === 'number' ? d.value : null).catch(() => null);
   };
-  document.querySelectorAll('a.card[data-key]').forEach(card => {
-    const el = card.querySelector('.count'), path = b.ns + '/' + card.dataset.key;
-    call('/get/' + path).then(v => show(el, v));
-    const hit = () => { call('/hit/' + path, true).then(v => show(el, v)); };   // fire-and-forget: navigation is never delayed
-    card.addEventListener('click', hit);
-    card.addEventListener('auxclick', e => { if (e.button === 1) hit(); });
+  const cards = [...document.querySelectorAll('a.card[data-key]')];
+  let live = false;
+  Promise.all(cards.map(c => call('/get/' + b.ns + '/' + c.dataset.key))).then(vals => {
+    if (vals.some(v => v === null)) return;                       // service down or partial: show nothing anywhere
+    live = true;
+    cards.forEach((c, i) => { const el = c.querySelector('.count'); el.textContent = label(vals[i]); el.hidden = false; });
+  });
+  cards.forEach(c => {
+    const el = c.querySelector('.count');
+    const hit = () => { call('/hit/' + b.ns + '/' + c.dataset.key, true).then(v => { if (live && v !== null) el.textContent = label(v); }); };   // fire-and-forget
+    c.addEventListener('click', hit);
+    c.addEventListener('auxclick', e => { if (e.button === 1) hit(); });
   });
 })();
