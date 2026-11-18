@@ -1,157 +1,84 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-mode="system" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Perks, on me · Giovanni’s referrals</title>
-<meta name="description" content="Giovanni’s referral links, each with the perk you get for signing up.">
+<meta name="description" content="Giovanni’s referral links: free FSD, Grok Bot, a free stock and more.">
 <meta name="robots" content="noindex">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://ggalletti1.github.io/referrals/">
-<meta name="theme-color" content="#FBFBFD" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#050506">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Giovanni’s referrals">
 <meta property="og:title" content="Perks, on me">
-<meta property="og:description" content="Giovanni’s referral links, each with the perk you get for signing up.">
+<meta property="og:description" content="Giovanni’s referral links: free FSD, Grok Bot, a free stock and more.">
 <meta property="og:url" content="https://ggalletti1.github.io/referrals/">
-<meta property="og:image" content="https://ggalletti1.github.io/referrals/assets/og.png?v=d7946bbbf2">
+<meta property="og:image" content="https://ggalletti1.github.io/referrals/assets/og.png?v=39870c2b84">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Perks, on me: Giovanni’s referrals">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Perks, on me">
-<meta name="twitter:description" content="Giovanni’s referral links, each with the perk you get for signing up.">
-<meta name="twitter:image" content="https://ggalletti1.github.io/referrals/assets/og.png?v=d7946bbbf2">
+<meta name="twitter:description" content="Giovanni’s referral links: free FSD, Grok Bot, a free stock and more.">
+<meta name="twitter:image" content="https://ggalletti1.github.io/referrals/assets/og.png?v=39870c2b84">
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Referrals">
-<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="assets/style.css?v=8e09ca3f4d">
+<script>/* set theme before first paint to avoid a flash */(function(){var d=document.documentElement,m='system';try{var s=localStorage.getItem('referrals-theme');if(s==='light'||s==='dark')m=s;}catch(e){}var t=m==='system'?(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'):m;d.setAttribute('data-mode',m);d.setAttribute('data-theme',t);d.style.colorScheme=t;})();</script>
+<link rel="stylesheet" href="assets/style.css?v=5a4c7a5d7b">
 </head>
-<body>
-<header class="bar"><div class="bar-in">
-<span class="brand">Referrals</span>
-<div class="theme">
-<button class="theme-btn" id="theme-btn" type="button" aria-label="Appearance" aria-haspopup="menu" aria-expanded="false" aria-controls="theme-menu"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.75a7.25 7.25 0 0 1 0 14.5z" fill="currentColor"/></svg></button>
-<div class="menu" id="theme-menu" role="menu" aria-label="Appearance" hidden>
-<button type="button" role="menuitemradio" aria-checked="true" data-theme="system">System</button>
-<button type="button" role="menuitemradio" aria-checked="false" data-theme="light">Light</button>
-<button type="button" role="menuitemradio" aria-checked="false" data-theme="dark">Dark</button>
+<body data-counter="https://abacus.jasoncameron.dev" data-ns="ggalletti1-referrals">
+<div class="page">
+<header class="top"><p class="eyebrow">Giovanni’s referrals</p>
+<div class="theme-wrap" id="theme-wrap">
+<button class="theme-btn" id="theme" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="theme-menu" title="Theme: System" aria-label="Theme: System">
+<svg class="ic ic-system" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+<svg class="ic ic-light" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+<svg class="ic ic-dark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+</button>
+<div class="theme-menu" id="theme-menu" role="menu" aria-label="Theme">
+<button type="button" class="tm-item" role="menuitemradio" aria-checked="false" data-mode="system" tabindex="-1" aria-label="System" title="System"><svg class="tm-ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></button>
+<button type="button" class="tm-item" role="menuitemradio" aria-checked="false" data-mode="light" tabindex="-1" aria-label="Light" title="Light"><svg class="tm-ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+<button type="button" class="tm-item" role="menuitemradio" aria-checked="false" data-mode="dark" tabindex="-1" aria-label="Dark" title="Dark"><svg class="tm-ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
 </div>
 </div>
-</div></header>
-<main>
-<section class="hero">
-<p class="eyebrow">Giovanni’s referrals</p>
-<h1>Perks, <span class="grad">on&nbsp;me.</span></h1>
-<p class="lede">A few things I actually use. Sign up with my links and unlock the perks.</p>
-</section>
-<section class="grid" aria-label="Referral links">
-<article class="card" id="tesla" style="--accent:#E31937;--ink:#FFFFFF;--tl:#D0102E;--td:#FF4D5E">
-<div class="art"><svg viewBox="0 0 400 220" role="img" aria-label="A sleek electric sedan on a dark road with a red glow" preserveAspectRatio="xMidYMid slice">
-<defs>
-<linearGradient id="tesla-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B1B1F"/><stop offset="1" stop-color="#050506"/></linearGradient>
-<radialGradient id="tesla-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#E31937" stop-opacity=".55"/><stop offset="1" stop-color="#E31937" stop-opacity="0"/></radialGradient>
-<linearGradient id="tesla-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#D9DCE1"/><stop offset="1" stop-color="#8E939B"/></linearGradient>
-<linearGradient id="tesla-glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2A2D33"/><stop offset="1" stop-color="#0E0F12"/></linearGradient>
-<linearGradient id="tesla-road" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E31937" stop-opacity="0"/><stop offset=".5" stop-color="#FF3347"/><stop offset="1" stop-color="#E31937" stop-opacity="0"/></linearGradient>
-</defs>
-<rect width="400" height="220" fill="url(#tesla-bg)"/>
-<ellipse cx="200" cy="150" rx="190" ry="70" fill="url(#tesla-glow)"/>
-<rect x="20" y="171" width="360" height="1.5" fill="url(#tesla-road)"/>
-<ellipse cx="201" cy="168" rx="140" ry="6" fill="#000" opacity=".7"/>
-<path d="M66 150c0-9 7-15 21-17l59-8c20-15 48-25 79-25s55 9 76 23l22 6c9 2 13 8 13 16v8c0 4-3 7-7 7H72c-4 0-6-2-6-5z" fill="url(#tesla-body)"/>
-<path d="M158 125c17-12 40-19 66-19 24 0 42 6 60 17l-4 3-120 2z" fill="url(#tesla-glass)"/>
-<path d="M223 107l-2 20" stroke="#D9DCE1" stroke-width="2.5"/>
-<path d="M66 144c3-1 8-2 12-2" stroke="#FF2B3F" stroke-width="3" stroke-linecap="round"/>
-<path d="M320 134c5 1 9 3 12 6" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
-<circle cx="118" cy="160" r="19" fill="#0B0B0D"/><circle cx="118" cy="160" r="11.5" fill="#5D6168"/><circle cx="118" cy="160" r="4" fill="#1A1B1F"/>
-<circle cx="285" cy="160" r="19" fill="#0B0B0D"/><circle cx="285" cy="160" r="11.5" fill="#5D6168"/><circle cx="285" cy="160" r="4" fill="#1A1B1F"/>
-</svg></div>
-<div class="body">
-<h2>Tesla</h2>
-<p class="what">Electric cars that get better over the air.</p>
-<div class="perk"><div class="perk-label"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 7h11v6.5a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1zM1.5 4.5h13v2.5h-13zM8 4.5v10M8 4.5C6.5 2 4 1.6 4 3.2 4 4.5 6.4 4.5 8 4.5zm0 0c1.5-2.5 4-2.9 4-1.3 0 1.3-2.4 1.3-4 1.3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Your perk</div><p>A free month of Full Self-Driving (Supervised). Eligible owners only; terms apply.</p></div>
-<a class="cta" href="https://tesla.com/get-app/referral?code=giovanni87739" target="_blank" rel="noopener">Claim your free month<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-</div>
+</header>
+<h1>Perks, <span>on&nbsp;me.</span></h1>
+<main class="grid" aria-label="Referral links">
+<article class="card" id="tesla" data-key="tesla" style="--fill:linear-gradient(180deg,#F3DFA2 0%,#D9B464 50%,#B8913F 100%);--ink:#2A1F05;--glow:#D9B464">
+<div class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><g transform="translate(12 12) scale(1.18) translate(-12 -14.4)"><path d="M2.5 15.6c0-.9.6-1.6 1.5-1.8l3.6-.7 2.4-2.3c.8-.7 1.8-1.1 2.9-1.1h2.2c1.2 0 2.3.5 3.1 1.3l1.6 1.8 1.5.4c.9.2 1.5 1 1.5 1.9v1.1c0 .5-.4.9-.9.9H3.4c-.5 0-.9-.4-.9-.9z" fill="currentColor"/><circle cx="7.4" cy="17.4" r="2.1" fill="currentColor" stroke="#D2AC5C" stroke-width="1.4"/><circle cx="17" cy="17.4" r="2.1" fill="currentColor" stroke="#D2AC5C" stroke-width="1.4"/></g></svg></div>
+<p class="name">Tesla</p>
+<p class="perk">Free month of FSD (Supervised)</p>
+<p class="count" hidden></p>
+<a class="cta" href="https://tesla.com/get-app/referral?code=giovanni87739" target="_blank" rel="noopener" aria-label="Claim: Tesla">Claim<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </article>
-<article class="card" id="grok-bot" style="--accent:var(--fg);--ink:var(--bg);--tl:#1D1D1F;--td:#F5F5F7">
-<div class="art"><svg viewBox="0 0 400 220" role="img" aria-label="A chat bubble with a spark, for an AI assistant" preserveAspectRatio="xMidYMid slice">
-<defs>
-<radialGradient id="grok-bg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#3A3A42"/><stop offset=".6" stop-color="#16161A"/><stop offset="1" stop-color="#050506"/></radialGradient>
-<linearGradient id="grok-bubble" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D5D7DC"/></linearGradient>
-</defs>
-<rect width="400" height="220" fill="url(#grok-bg)"/>
-<g fill="none" stroke="#FFFFFF" stroke-opacity=".08"><circle cx="200" cy="105" r="70"/><circle cx="200" cy="105" r="100"/><circle cx="200" cy="105" r="132"/></g>
-<path d="M162 52h76c19 0 34 15 34 34v26c0 19-15 34-34 34h-40l-26 20c-3 2-6 0-6-3v-17c-19 0-34-15-38-34V86c0-19 15-34 34-34z" fill="url(#grok-bubble)"/>
-<path d="M200 70c3 20 8 25 29 29-21 4-26 9-29 29-3-20-8-25-29-29 21-4 26-9 29-29z" fill="#0B0B0D"/>
-<path d="M300 52c1.5 9 4 11.5 13 13-9 1.5-11.5 4-13 13-1.5-9-4-11.5-13-13 9-1.5 11.5-4 13-13z" fill="#FFFFFF" opacity=".9"/>
-<path d="M104 140c1 6 2.6 7.6 8.6 8.6-6 1-7.6 2.6-8.6 8.6-1-6-2.6-7.6-8.6-8.6 6-1 7.6-2.6 8.6-8.6z" fill="#FFFFFF" opacity=".6"/>
-<circle cx="322" cy="150" r="2.5" fill="#FFFFFF" opacity=".5"/><circle cx="88" cy="70" r="2" fill="#FFFFFF" opacity=".45"/>
-</svg></div>
-<div class="body">
-<h2>Grok Bot</h2>
-<p class="what">AI teammates that take work off your plate.</p>
-<div class="perk"><div class="perk-label"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 7h11v6.5a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1zM1.5 4.5h13v2.5h-13zM8 4.5v10M8 4.5C6.5 2 4 1.6 4 3.2 4 4.5 6.4 4.5 8 4.5zm0 0c1.5-2.5 4-2.9 4-1.3 0 1.3-2.4 1.3-4 1.3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Your perk</div><p>Try Grok Bot free for 2 weeks.</p></div>
-<a class="cta" href="https://grok.com/refer/bot?code=4GP8KQR2NTVF" target="_blank" rel="noopener">Start your free trial<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-</div>
+<article class="card" id="grok-bot" data-key="grok-bot" style="--fill:var(--fg);--ink:var(--bg);--glow:#8E8E93">
+<div class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5c.7 4.7 3.8 7.8 8.5 8.5-4.7.7-7.8 3.8-8.5 8.5-.7-4.7-3.8-7.8-8.5-8.5 4.7-.7 7.8-3.8 8.5-8.5z" fill="currentColor"/></svg></div>
+<p class="name">Grok Bot</p>
+<p class="perk">2 weeks free</p>
+<p class="count" hidden></p>
+<a class="cta" href="https://grok.com/refer/bot?code=4GP8KQR2NTVF" target="_blank" rel="noopener" aria-label="Claim: Grok Bot">Claim<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </article>
-<article class="card" id="leonida" style="--accent:linear-gradient(100deg,#FF3D8B,#FF8A3D);--ink:#FFFFFF;--tl:#D6246E;--td:#FF6FA8">
-<div class="art"><svg viewBox="0 0 400 220" role="img" aria-label="A neon sunset over the ocean framed by palm trees" preserveAspectRatio="xMidYMid slice">
-<defs>
-<linearGradient id="leonida-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B0F5C"/><stop offset=".55" stop-color="#C21F72"/><stop offset=".8" stop-color="#FF7A45"/></linearGradient>
-<linearGradient id="leonida-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE27A"/><stop offset="1" stop-color="#FF3D8B"/></linearGradient>
-<linearGradient id="leonida-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3B1466"/><stop offset="1" stop-color="#14062B"/></linearGradient>
-<mask id="leonida-cut"><rect width="400" height="220" fill="#fff"/><g fill="#000"><rect y="118" width="400" height="3"/><rect y="129" width="400" height="4"/><rect y="141" width="400" height="5"/><rect y="153" width="400" height="6"/></g></mask>
-</defs>
-<rect width="400" height="220" fill="url(#leonida-sky)"/>
-<circle cx="200" cy="150" r="66" fill="url(#leonida-sun)" mask="url(#leonida-cut)"/>
-<rect y="158" width="400" height="62" fill="url(#leonida-sea)"/>
-<g stroke="#FF8AB8" stroke-linecap="round" opacity=".7"><path d="M160 170h80" stroke-width="2.5"/><path d="M172 181h56" stroke-width="2"/><path d="M184 192h32" stroke-width="1.6"/></g>
-<g fill="#16052A">
-<path d="M64 220c4-40 10-78 24-110l5 2c-12 33-17 70-19 108z"/>
-<path d="M90 108c-14-14-36-18-56-10 18-1 36 5 52 16zM90 108c-6-18-24-30-44-32 16 8 30 20 38 36zM90 108c8-17 26-26 46-24-18 4-32 13-42 28zM90 108c18-6 38 0 52 14-16-7-34-9-50-6zM90 108c-18 2-34 14-42 30 12-12 28-20 44-24zM90 108c4-16 2-30-8-42 4 14 4 28 2 42z"/>
-<path d="M334 220c-2-34-8-66-20-94l5-2c12 29 19 62 21 96z"/>
-<path d="M316 126c12-14 32-20 52-14-17 0-33 6-47 17zM316 126c4-18 20-31 40-35-14 9-27 21-34 37zM316 126c-8-16-25-24-44-22 17 4 30 13 40 27zM316 126c-17-5-36 1-48 15 15-7 31-10 46-7zM316 126c17 3 31 15 38 31-11-12-25-20-40-25z"/>
-</g>
-</svg></div>
-<div class="body">
-<h2>Leonida State Guide</h2>
-<p class="what">The unofficial GTA VI interactive map and wiki.</p>
-<div class="perk"><div class="perk-label"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 7h11v6.5a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1zM1.5 4.5h13v2.5h-13zM8 4.5v10M8 4.5C6.5 2 4 1.6 4 3.2 4 4.5 6.4 4.5 8 4.5zm0 0c1.5-2.5 4-2.9 4-1.3 0 1.3-2.4 1.3-4 1.3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Your perk</div><p>Join with my invite and create your free account.</p></div>
-<a class="cta" href="https://leonidastate.guide/r/giovanni" target="_blank" rel="noopener">Join Leonida State<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-</div>
+<article class="card" id="robinhood" data-key="robinhood" style="--fill:#B6F400;--ink:#0B1A00;--glow:#7ED900">
+<div class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 17.5l5-5 3.5 3 8-8.5M15 7h5v5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<p class="name">Robinhood</p>
+<p class="perk">Free stock worth up to $200</p>
+<p class="count" hidden></p>
+<a class="cta" href="https://join.robinhood.com/giovang-7c7c02" target="_blank" rel="noopener" aria-label="Claim: Robinhood">Claim<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </article>
-<article class="card" id="robinhood" style="--accent:#B6F400;--ink:#0B1A00;--tl:#2C8A00;--td:#C6FF3A">
-<div class="art"><svg viewBox="0 0 400 220" role="img" aria-label="A rising stock chart with a glowing green line" preserveAspectRatio="xMidYMid slice">
-<defs>
-<linearGradient id="robinhood-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0D1F0A"/><stop offset="1" stop-color="#030603"/></linearGradient>
-<linearGradient id="robinhood-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B6F400" stop-opacity=".35"/><stop offset="1" stop-color="#B6F400" stop-opacity="0"/></linearGradient>
-<linearGradient id="robinhood-line" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#28C800"/><stop offset="1" stop-color="#D4FF3A"/></linearGradient>
-<filter id="robinhood-blur" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
-</defs>
-<rect width="400" height="220" fill="url(#robinhood-bg)"/>
-<g stroke="#FFFFFF" stroke-opacity=".06"><path d="M0 60h400M0 105h400M0 150h400M0 195h400"/></g>
-<path d="M0 182L40 170 70 176 104 148 134 156 168 124 196 136 236 92 268 108 308 62 340 70 380 42L400 36V220H0z" fill="url(#robinhood-area)"/>
-<path d="M0 182L40 170 70 176 104 148 134 156 168 124 196 136 236 92 268 108 308 62 340 70 380 42" fill="none" stroke="#B6F400" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" opacity=".45" filter="url(#robinhood-blur)"/>
-<path d="M0 182L40 170 70 176 104 148 134 156 168 124 196 136 236 92 268 108 308 62 340 70 380 42" fill="none" stroke="url(#robinhood-line)" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="380" cy="42" r="14" fill="#D4FF3A" opacity=".2"/><circle cx="380" cy="42" r="6" fill="#D4FF3A"/>
-</svg></div>
-<div class="body">
-<h2>Robinhood</h2>
-<p class="what">Invest in stocks, ETFs and more, from one app.</p>
-<div class="perk"><div class="perk-label"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 7h11v6.5a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1zM1.5 4.5h13v2.5h-13zM8 4.5v10M8 4.5C6.5 2 4 1.6 4 3.2 4 4.5 6.4 4.5 8 4.5zm0 0c1.5-2.5 4-2.9 4-1.3 0 1.3-2.4 1.3-4 1.3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Your perk</div><p>Get a free stock worth $5 to $200 once you link your bank. Limitations apply.</p></div>
-<a class="cta" href="https://join.robinhood.com/giovang-7c7c02" target="_blank" rel="noopener">Get your free stock<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-</div>
+<article class="card" id="leonida" data-key="leonida" style="--fill:linear-gradient(135deg,#5B1E8C 0%,#C21F72 50%,#FF7A45 100%);--ink:#FFFFFF;--glow:#FF3D8B">
+<div class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 13.5a5.5 5.5 0 0 1 11 0M3 13.5h18M6 17h12M9 20.5h6M12 4v1.6M5.6 6.8l1.1 1.1M18.4 6.8l-1.1 1.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+<p class="name">Leonida State Guide</p>
+<p class="perk">Join the GTA VI guide</p>
+<p class="count" hidden></p>
+<a class="cta" href="https://leonidastate.guide/r/giovanni" target="_blank" rel="noopener" aria-label="Join: Leonida State Guide">Join<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </article>
-</section>
 </main>
-<footer class="foot">
-<p>Not affiliated with or endorsed by Tesla, Inc., xAI (Grok), Robinhood, or Leonida State Guide. Names belong to their owners; artwork is illustrative.</p>
-<p>Offers, eligibility and rewards are set by each service and can change; terms apply. Some programs, like Robinhood’s, reward both of us.</p>
-</footer>
-<script src="assets/app.js?v=ee823dc5d6" defer></script>
+<footer class="foot">Not affiliated with Tesla, xAI, Robinhood or Leonida State Guide.</footer>
+</div>
+<script src="assets/app.js?v=e1e7f9ee9d" defer></script>
 </body>
 </html>

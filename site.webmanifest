@@ -2,15 +2,28 @@
   "id": "/referrals/",
   "name": "Perks, on me",
   "short_name": "Referrals",
-  "description": "Giovanni’s referral links, each with the perk you get for signing up.",
+  "description": "Giovanni’s referral links: free FSD, Grok Bot, a free stock and more.",
   "start_url": "/referrals/",
   "scope": "/referrals/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#050506",
+  "theme_color": "#050506",
   "icons": [
-    {"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png"},
-    {"src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png"},
-    {"src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

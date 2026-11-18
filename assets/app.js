@@ -1,22 +1,48 @@
-// Theme menu: System / Light / Dark, stored in localStorage('theme'); 'system' removes the override.
-(function () {
-  var root = document.documentElement, btn = document.getElementById('theme-btn'), menu = document.getElementById('theme-menu');
-  var items = menu.querySelectorAll('button[data-theme]');
-  function current() { try { return localStorage.getItem('theme') || 'system'; } catch (e) { return 'system'; } }
-  function apply(t) {
-    if (t === 'light' || t === 'dark') root.setAttribute('data-theme', t); else root.removeAttribute('data-theme');
-    items.forEach(function (b) { b.setAttribute('aria-checked', String(b.dataset.theme === t)); });
+'use strict';
+const $ = id => document.getElementById(id);
+/* theme menu (System / Light / Dark): copied from MyTesla core.js; storage key 'referrals-theme' (same origin as MyTesla) */
+(function theme() {
+  const root = document.documentElement, btn = $('theme'), menu = $('theme-menu'), wrap = $('theme-wrap');
+  if (!btn) return;
+  const mq = window.matchMedia ? matchMedia('(prefers-color-scheme: light)') : null;
+  let mode = 'system'; try { const s = localStorage.getItem('referrals-theme'); if (s === 'light' || s === 'dark') mode = s; } catch (e) {}
+  const items = [...menu.querySelectorAll('[data-mode]')];
+  function apply() {
+    const t = mode === 'system' ? (mq && mq.matches ? 'light' : 'dark') : mode;
+    root.dataset.mode = mode; root.dataset.theme = t; root.style.colorScheme = t;
+    const m = document.querySelector('meta[name="theme-color"]'); if (m) m.content = t === 'light' ? '#f5f5f7' : '#050506';
+    const label = mode[0].toUpperCase() + mode.slice(1);
+    btn.title = 'Theme: ' + label; btn.setAttribute('aria-label', 'Theme: ' + label);
+    items.forEach(i => i.setAttribute('aria-checked', String(i.dataset.mode === mode)));
   }
-  function open(v) { menu.hidden = !v; btn.setAttribute('aria-expanded', String(v)); if (v) (menu.querySelector('[aria-checked=true]') || items[0]).focus(); }
-  btn.addEventListener('click', function (e) { e.stopPropagation(); open(menu.hidden); });
-  items.forEach(function (b) {
-    b.addEventListener('click', function () {
-      var t = b.dataset.theme;
-      try { if (t === 'system') localStorage.removeItem('theme'); else localStorage.setItem('theme', t); } catch (e) {}
-      apply(t); open(false); btn.focus();
-    });
+  const open = () => { wrap.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); (items.find(i => i.dataset.mode === mode) || items[0]).focus(); };
+  const close = f => { wrap.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); if (f) btn.focus(); };
+  btn.addEventListener('click', e => { e.stopPropagation(); wrap.classList.contains('open') ? close() : open(); });
+  items.forEach(i => i.addEventListener('click', () => { mode = i.dataset.mode; try { mode === 'system' ? localStorage.removeItem('referrals-theme') : localStorage.setItem('referrals-theme', mode); } catch (e) {} apply(); close(true); }));
+  menu.addEventListener('keydown', e => {
+    const k = items.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') { e.preventDefault(); items[(k + 1) % items.length].focus(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); items[(k - 1 + items.length) % items.length].focus(); }
+    else if (e.key === 'Escape') close(true);
   });
-  document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target)) open(false); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); } });
-  apply(current());
+  document.addEventListener('click', e => { if (!wrap.contains(e.target)) close(); });
+  if (mq) (mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply));
+  apply();
+})();
+/* click counter: public Abacus counters (no cookies, no keys). Read on load, +1 on click without delaying the link.
+   Any failure or a zero count keeps the line hidden. */
+(function counters() {
+  const b = document.body.dataset, api = b.counter && b.ns ? b.counter.replace(/\/$/, '') : ''; if (!api || !window.fetch) return;
+  const show = (el, v) => { if (typeof v === 'number' && v > 0) { el.textContent = v.toLocaleString('en-US') + ' joined'; el.hidden = false; } };
+  const call = (path, keepalive) => {
+    const ctl = window.AbortController ? new AbortController() : null;
+    if (ctl && !keepalive) setTimeout(() => ctl.abort(), 4000);
+    return fetch(api + path, {cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer', keepalive: !!keepalive, signal: ctl && !keepalive ? ctl.signal : undefined})
+      .then(r => r.ok ? r.json() : null).then(d => d && d.value).catch(() => null);
+  };
+  document.querySelectorAll('.card[data-key]').forEach(card => {
+    const el = card.querySelector('.count'), key = card.dataset.key;
+    call('/get/' + b.ns + '/' + key).then(v => show(el, v));
+    card.querySelector('.cta').addEventListener('click', () => { call('/hit/' + b.ns + '/' + key, true).then(v => show(el, v)); });
+  });
 })();
